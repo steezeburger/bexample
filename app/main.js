@@ -83,8 +83,20 @@ define(['jquery', 'jquery-ui', 'knockout', 'lodash', 'bootstrap'], function($, u
       }
       vm.menuItems(newItems);
     });
+    vm.searchInput = ko.observable();
+    vm.searchInput.subscribe(function(newVal) {
+      // filter our items
+      var filtered = _.filter(unfilteredMenuItems, function(item) {
+        if(item.name.toLowerCase().indexOf(newVal.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      });
+      vm.menuItems(filtered);
+    });
 
   } // MenuModel
+
 
   // MenuDataService
   function MenuDataService() {
