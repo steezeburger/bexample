@@ -119,7 +119,7 @@ define(['jquery', 'jquery-ui', 'knockout', 'lodash', 'bootstrap'], function($, u
       case 8:
         return 'n/a';
       case 9:
-        return 'n/a';
+        return 'concentrate';
       case 10:
         return 'accessory';
       case 11:
