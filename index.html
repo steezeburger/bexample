@@ -13,22 +13,29 @@
 
     <h1>Native Roots Apothecary Menu</h1>
 
-    <div>
-      <button data-bind="click: function() { setFilter() }"> All </button>
-      <button data-bind="click: function() { setFilter('flower') }"> Flower </button>
-      <button data-bind="click: function() { setFilter('edible') }"> Edibles </button>
-      <button data-bind="click: function() { setFilter('wax') }"> Wax </button>
-      <button data-bind="click: function() { setFilter('concentrate') }"> Concentrates </button>
-      <button data-bind="click: function() { setFilter('beverage') }"> Beverages </button>
-      <button data-bind="click: function() { setFilter('cream/balm') }"> Creams & Balms </button>
-      <button data-bind="click: function() { setFilter('pre-rolled') }"> Pre-Rolled </button>
-      <button data-bind="click: function() { setFilter('accessory') }"> Accessories </button>
+    <div class="row">
+      <button class="btn btn-default" data-bind="click: function() { setFilter() }"> All </button>
+      <button class="btn btn-default" data-bind="click: function() { setFilter('flower') }"> Flower </button>
+      <button class="btn btn-default" data-bind="click: function() { setFilter('edible') }"> Edibles </button>
+      <button class="btn btn-default" data-bind="click: function() { setFilter('wax') }"> Wax </button>
+      <button class="btn btn-default" data-bind="click: function() { setFilter('concentrate') }"> Concentrates </button>
+      <button class="btn btn-default" data-bind="click: function() { setFilter('beverage') }"> Beverages </button>
+      <button class="btn btn-default" data-bind="click: function() { setFilter('cream/balm') }"> Creams & Balms </button>
+      <button class="btn btn-default" data-bind="click: function() { setFilter('pre-rolled') }"> Pre-Rolled </button>
+      <button class="btn btn-default" data-bind="click: function() { setFilter('accessory') }"> Accessories </button>
     </div>
-    <div data-bind="visible: showFlowerOptions">
-      <button data-bind="click: function() { setFilter('indica') }"> Indica </button>
-      <button data-bind="click: function() { setFilter('sativa') }"> Sativa </button>
-      <button data-bind="click: function() { setFilter('hybrid') }"> Hybrid </button>
+
+    <div class="row" data-bind="visible: showFlowerOptions">
+      <button class="btn btn-default" data-bind="click: function() { setFilter('indica') }"> Indica </button>
+      <button class="btn btn-default" data-bind="click: function() { setFilter('sativa') }"> Sativa </button>
+      <button class="btn btn-default" data-bind="click: function() { setFilter('hybrid') }"> Hybrid </button>
     </div>
+
+    <div class="row">
+      <input type="text" data-bind="autoComplete: { selected: selectedOption, options: nameOptions }" />
+    </div>
+    <!-- Debugging -->
+    <p data-bind="text: selectedOption().name"></p>
 
     <table class="table table-striped table-hover">
       <thead>

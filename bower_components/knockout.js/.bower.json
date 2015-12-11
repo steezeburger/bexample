@@ -1,6 +1,6 @@
 {
   "name": "knockout",
-  "version": "2.3.0",
+  "version": "3.1.0",
   "main": "knockout.js",
   "scripts": [
     "knockout.js"
@@ -12,13 +12,13 @@
     "components"
   ],
   "homepage": "https://github.com/bowerjs/knockout",
-  "_release": "2.3.0",
+  "_release": "3.1.0",
   "_resolution": {
     "type": "version",
-    "tag": "2.3.0",
-    "commit": "cd433fbf32abab7da5b2df204dea22f862354992"
+    "tag": "v3.1.0",
+    "commit": "4425720397abc0b6dd630a4de65c3a502bb59c86"
   },
   "_source": "git://github.com/bowerjs/knockout.git",
-  "_target": "~2.3.0",
+  "_target": "~3.1.0",
   "_originalSource": "knockout.js"
 }

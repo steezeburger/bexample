@@ -13,7 +13,8 @@ require.config({
     "jquery": "../bower_components/jquery/dist/jquery",
     "jquery-ui": "../bower_components/jquery-ui/jquery-ui",
     "lodash": "../bower_components/lodash/lodash",
-    "bootstrap": "../bower_components/bootstrap/dist/js/bootstrap"
+    "bootstrap": "../bower_components/bootstrap/dist/js/bootstrap",
+    "Fuse": "../bower_components/fuse.js/src/fuse"
   },
   map: {
     "*": {
@@ -29,8 +30,8 @@ require.config({
 require.config({
   map: {
     "*": {
-      "knockout": "../bower_components/knockout.js/knockout-2.3.0.debug",
-      "ko": "../bower_components/knockout.js/knockout-2.3.0.debug"
+      "knockout": "../bower_components/knockout.js/knockout.debug",
+      "ko": "../bower_components/knockout.js/knockout.debug"
     }
   }
 });

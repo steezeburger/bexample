@@ -1,7 +1,8 @@
+/* jshint curly:false */
 /* jshint latedef:false */
 /* global console */
 
-define(['jquery', 'jquery-ui', 'knockout', 'lodash', 'bootstrap'], function($, ui, ko, _) {
+define(['jquery', 'jquery-ui', 'knockout', 'lodash', 'bootstrap', 'Fuse'], function($, ui, ko, _, bootstrap, Fuse) {
 
   // secrets and constants
   var API_URL = 'https://weedmaps.com/dispensaries/native-roots-apothecary/menu_items.json';
@@ -14,20 +15,24 @@ define(['jquery', 'jquery-ui', 'knockout', 'lodash', 'bootstrap'], function($, u
     this.name = item.name;
     this.description = item.body;
     this.type = typeFilter(item.menu_item_category_id);
-    this.price_gram = item.price_gram || null;
-    this.price_eighth = item.price_eighth || null;
-    this.price_quarter = item.price_quarter || null;
-    this.price_unit = item.price_unit || null;
+    this.price_gram = item.price_gram || undefined;
+    this.price_eighth = item.price_eighth || undefined;
+    this.price_quarter = item.price_quarter || undefined;
+    this.price_unit = item.price_unit || undefined;
   }
 
   // view-model constructor
   function MenuViewModel() {
     var vm = this;
 
-    var unfilteredMenuItems;
-    var namesArray;
     // fetch menu data when this gets instantiated
     vm.menuItems = ko.observableArray();
+    // autocomplete
+    vm.selectedOption = ko.observable('');
+    vm.nameOptions = ko.observableArray();
+    // get this in a format for jquery-ui
+    var unfilteredMenuItems;
+    var namesArray;
     MenuData
       .fetchAllData()
       .success(function(data) {
@@ -37,7 +42,16 @@ define(['jquery', 'jquery-ui', 'knockout', 'lodash', 'bootstrap'], function($, u
         // make copy and stuff here to keep whole collection intact for use when filtering
         unfilteredMenuItems = _.cloneDeep(mappedItems);
         // building array of names to be used for fuzzy searching matching
-        namesArray = _.pluck(mappedItems, 'name');
+        namesArray = _.pluck(mappedItems, 'name').sort();
+
+        var nameOptions = namesArray.map(function(name) {
+          return {
+            label: name,
+            value: name.toLowerCase()
+          };
+        });
+        vm.nameOptions(nameOptions);
+
         // ko
         vm.menuItems(mappedItems);
       })
@@ -83,6 +97,50 @@ define(['jquery', 'jquery-ui', 'knockout', 'lodash', 'bootstrap'], function($, u
       }
       vm.menuItems(newItems);
     });
+    // end filtering
+
+    // custom binding handler for autocomplete widget
+    ko.bindingHandlers.autoComplete = {
+      // Only using init event because the Jquery.UI.AutoComplete widget will take care of the update callbacks
+      init: function(element, valueAccessor) {
+        // { selected: mySelectedOptionObservable, options: myArrayOfLabelValuePairs }
+        var settings = valueAccessor();
+
+        var selectedOption = settings.selected;
+        var options = settings.options;
+
+        var updateElementValueWithLabel = function(event, ui) {
+          console.log('ui', ui);
+          // Stop the default behavior
+          event.preventDefault();
+
+          // Update the value of the html element with the label
+          // of the activated option in the list (ui.item)
+          $(element).val(ui.item.label);
+
+          // Update our SelectedOption observable
+          if (typeof ui.item !== "undefined") {
+            // ui.item - label|value|...
+            selectedOption(ui.item);
+          }
+        };
+
+        // options isn't actually the array it needs to be right here, but i cannot figure out why
+        $(element).autocomplete({
+          source: options,
+          select: function(event, ui) {
+            updateElementValueWithLabel(event, ui);
+          },
+          focus: function(event, ui) {
+            updateElementValueWithLabel(event, ui);
+          },
+          change: function(event, ui) {
+            updateElementValueWithLabel(event, ui);
+          }
+        });
+      } // end init
+    };
+
 
   } // MenuModel
 
@@ -93,9 +151,7 @@ define(['jquery', 'jquery-ui', 'knockout', 'lodash', 'bootstrap'], function($, u
     self.fetchAllData = function() {
       return $.getJSON(API_URL);
     };
-
     // other data related methods here
-
   } // MenuDataService
 
   // returns type from menu_item_category_id
@@ -136,14 +192,13 @@ define(['jquery', 'jquery-ui', 'knockout', 'lodash', 'bootstrap'], function($, u
 
   // sort arr of objs alphabetically by element.name
   function sortAlphaByName(a, b) {
-    if(a.name[0] > b.name[0]) {
-      return 1;
-    }
-    if(a.name[0] < b.name[0]) {
-      return -1;
-    }
+    if(a.name[0] > b.name[0]) return 1;
+    if(a.name[0] < b.name[0]) return -1;
     return 0;
   }
 
-  ko.applyBindings(new MenuViewModel(), document.getElementById('menu-view'));
+  $(function () {
+    ko.applyBindings(new MenuViewModel(), document.getElementById('menu-view'));
+  });
+
 });
