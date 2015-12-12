@@ -1,7 +1,7 @@
 /* jshint latedef:false */
 /* global console */
 
-define(['jquery', 'jquery-ui', 'knockout', 'lodash', 'bootstrap'], function($, ui, ko, _) {
+define(['jquery', 'knockout', 'lodash', 'bootstrap'], function($, ko, _) {
 
   // secrets and constants
   var API_URL = 'https://weedmaps.com/dispensaries/native-roots-apothecary/menu_items.json';
