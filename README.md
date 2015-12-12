@@ -66,3 +66,10 @@ If you're using a webserver like apache or nginx, you'll want
 to create a redirect from `/components/requirejs/require.js` to
 `/dist/require.js`. (*Note: this is exactly what `grunt
 preview-live` does*)
+
+
+## TODO
+- implement autocomplete with fuzzy matching
+- add clear search 'x' on input
+- fix the stupid behavior of the mobile menu
+- solidify the responsive design
