@@ -157,5 +157,5 @@ define(['jquery', 'jquery-ui', 'knockout', 'lodash', 'bootstrap'], function($, u
     return 0;
   }
 
-  ko.applyBindings(new MenuViewModel(), document.getElementById('menu-view'));
+  ko.applyBindings(new MenuViewModel(), document.getElementsByClassName('menu-view')[0]);
 });
