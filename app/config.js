@@ -1,10 +1,6 @@
 require.config({
   shim: {
     "bootstrap" : { "deps": ["jquery"] },
-    "jquery-ui" : {
-      "exports": "$",
-      "deps": ["jquery"]
-    }
   },
   // make bower_components more sensible
   // expose jquery
@@ -12,7 +8,6 @@ require.config({
     "bower_components": "../bower_components",
     "css": "../css",
     "jquery": "../bower_components/jquery/dist/jquery",
-    "jquery-ui": "../bower_components/jquery-ui/jquery-ui",
     "lodash": "../bower_components/lodash/lodash",
     "bootstrap": "../bower_components/bootstrap/dist/js/bootstrap"
   },
