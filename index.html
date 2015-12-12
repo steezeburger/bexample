@@ -1,61 +1,132 @@
-<!Doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
   <title>weedmaps menu</title>
   <script data-main="app/config" src="bower_components/requirejs/require.js"></script>
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/creative.css">
+
+  <!-- Custom Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+
+  <!-- Custom CSS -->
+  <!-- <link rel="stylesheet" href="css/style.css" type="text/css"> -->
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
-<body>
 
-  <div id="menu-view" class="container">
+<body id="page-top" class="menu-view">
 
-    <h1>Native Roots Apothecary Menu</h1>
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand page-scroll" href="#page-top">native roots</a>
+        </div>
 
-    <div>
-      <button data-bind="click: function() { setFilter() }"> All </button>
-      <button data-bind="click: function() { setFilter('flower') }"> Flower </button>
-      <button data-bind="click: function() { setFilter('edible') }"> Edibles </button>
-      <button data-bind="click: function() { setFilter('wax') }"> Wax </button>
-      <button data-bind="click: function() { setFilter('concentrate') }"> Concentrates </button>
-      <button data-bind="click: function() { setFilter('beverage') }"> Beverages </button>
-      <button data-bind="click: function() { setFilter('cream/balm') }"> Creams & Balms </button>
-      <button data-bind="click: function() { setFilter('pre-rolled') }"> Pre-Rolled </button>
-      <button data-bind="click: function() { setFilter('accessory') }"> Accessories </button>
-    </div>
-    <div data-bind="visible: showFlowerOptions">
-      <button data-bind="click: function() { setFilter('indica') }"> Indica </button>
-      <button data-bind="click: function() { setFilter('sativa') }"> Sativa </button>
-      <button data-bind="click: function() { setFilter('hybrid') }"> Hybrid </button>
-    </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-    <div class="search-bar">
-      <input data-bind="textInput: searchInput" />
-      <!-- <input type="text" name="searchinput" data-bind="search: 'test'" /> -->
-    </div>
+          <ul class="nav navbar-nav navbar-right">
 
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description (if available)</th>
-        </tr>
-      </thead>
+            <li><a class="page-scroll" data-bind="click: function() { setFilter() }"> All </a></li>
+            <li><a class="page-scroll" data-bind="click: function() { setFilter('flower') }"> Flower </a></li>
+            <li><a class="page-scroll" data-bind="click: function() { setFilter('edible') }"> Edibles </a></li>
+            <li><a class="page-scroll" data-bind="click: function() { setFilter('wax') }"> Wax </a></li>
+            <li><a class="page-scroll" data-bind="click: function() { setFilter('concentrate') }"> Concentrates </a></li>
+            <li><a class="page-scroll" data-bind="click: function() { setFilter('beverage') }"> Beverages </a></li>
+            <li><a class="page-scroll" data-bind="click: function() { setFilter('cream/balm') }"> Creams & Balms </a></li>
+            <li><a class="page-scroll" data-bind="click: function() { setFilter('pre-rolled') }"> Pre-Rolled </a></li>
+            <li><a class="page-scroll" data-bind="click: function() { setFilter('accessory') }"> Accessories </a></li>
 
-      <tbody data-bind="foreach: menuItems">
-        <tr>
-          <td data-bind="text: $index() + 1"></td>
-          <td data-bind="text: name"></td>
-          <td data-bind="text: type"></td>
-          <td data-bind="text: description"></td>
-        </tr>
-      </tbody>
-    </table>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
 
-  </div>
+    <header>
+      <div class="header-content container">
+
+
+        <div class="flower-options row">
+          <div class="" data-bind="visible: showFlowerOptions">
+            <button class="btn btn-success" data-bind="click: function() { setFilter('indica') }"> Indica </button>
+            <button class="btn btn-success" data-bind="click: function() { setFilter('sativa') }"> Sativa </button>
+            <button class="btn btn-success" data-bind="click: function() { setFilter('hybrid') }"> Hybrid </button>
+          </div>
+        </div>
+
+        <div class="search-bar row">
+          <input data-bind="textInput: searchInput" placeholder="search by name"/>
+        </div>
+
+          <div class="header-content-inner menu-widget hidden-xs hidden-sm hidden-md">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Description (if available)</th>
+                </tr>
+              </thead>
+
+              <tbody data-bind="foreach: menuItems">
+                <tr>
+                  <td data-bind="text: $index() + 1"></td>
+                  <td data-bind="text: name"></td>
+                  <td data-bind="text: type"></td>
+                  <td data-bind="text: description"></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+        <div class="header-content-inner hidden-md hidden-lg" data-bind="foreach: menuItems">
+          <div class="card-view">
+            <div class="card-name">
+              <span class="" data-bind="text: name"></span>
+            </div>
+            <div class="card-type">
+              <span class="" data-bind="text: type"></span>
+            </div>
+            <div class="card-description" data-bind="visible: description">
+              <span class="underline">Description:</span>
+              </br>
+              <span class="" data-bind="text: description"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </header>
 
 </body>
+
 </html>

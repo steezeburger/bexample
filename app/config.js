@@ -10,6 +10,7 @@ require.config({
   // expose jquery
   paths: {
     "bower_components": "../bower_components",
+    "css": "../css",
     "jquery": "../bower_components/jquery/dist/jquery",
     "jquery-ui": "../bower_components/jquery-ui/jquery-ui",
     "lodash": "../bower_components/lodash/lodash",
