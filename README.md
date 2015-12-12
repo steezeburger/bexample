@@ -73,3 +73,4 @@ preview-live` does*)
 - add clear search 'x' on input
 - fix the stupid behavior of the mobile menu
 - solidify the responsive design
+- add prices
